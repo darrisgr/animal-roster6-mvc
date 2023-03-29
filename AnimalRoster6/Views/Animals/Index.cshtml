@@ -1,5 +1,8 @@
-﻿<h1>Our Animals</h1>
-@if (ViewBag.animals.Count == 0)
+﻿@using AnimalRoster6.Models;
+@model List<Animal>
+
+<h1>Our Animals</h1>
+@if (Model.Count == 0)
 {
     <h2>Oops! You don't have any animals!<br />Go and add some to the roster, dude.</h2>
 }
@@ -20,10 +23,10 @@ else
                 Description
             </th>
             <th scope="col">
-                Image
+                Image URL
             </th>
         </tr>
-        @foreach (Animal animal in ViewBag.animals)
+        @foreach (var animal in Model)
         {
             <tr>
                 <td>@animal.Id</td>

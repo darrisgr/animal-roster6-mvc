@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AnimalRoster6.Models;
+using AnimalRoster6.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -16,25 +17,40 @@ namespace AnimalRoster6.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            ViewBag.animals = AnimalData.GetAll();
-            return View();
+            List<Animal> animals = new List<Animal>(AnimalData.GetAll());
+            return View(animals);
         }
 
         [HttpGet]
         [Route("Animals/Add")]
         public IActionResult Add()
         {
-            return View();
+            AddAnimalViewModel addAnimalViewModel = new AddAnimalViewModel();
+            return View(addAnimalViewModel);
         }
 
 
         [HttpPost]
         [Route("Animals/Add")]
-        public IActionResult Add(Animal newAnimal)
+        public IActionResult Add(AddAnimalViewModel addAnimalViewModel)
         {
-            AnimalData.Add(newAnimal);
+            if (ModelState.IsValid)
+            {
+                Animal newAnimal = new Animal
+                {
+                    Name = addAnimalViewModel.Name,
+                    Species = addAnimalViewModel.Species,
+                    Description = addAnimalViewModel.Description,
+                    ImgUrl = addAnimalViewModel.ImgUrl
+                };
 
-            return Redirect("/Animals");
+                AnimalData.Add(newAnimal);
+
+                return Redirect("/Animals");
+            }
+
+            return View(addAnimalViewModel);
+
         }
     }
 }

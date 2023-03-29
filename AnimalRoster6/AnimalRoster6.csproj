@@ -8,8 +8,12 @@
 
   <ItemGroup>
     <None Remove="Views\Animals\" />
+    <None Remove="Data\" />
+    <None Remove="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Animals\" />
+    <Folder Include="Data\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
 </Project>
