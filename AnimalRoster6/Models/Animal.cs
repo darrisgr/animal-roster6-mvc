@@ -1,13 +1,14 @@
 ﻿using System;
 namespace AnimalRoster6.Models
 {
-	public class Animal
-	{
+    public class Animal
+    {
 
         public string? Name { get; set; }
-		public string? Species { get; set; }
-		public string? Description { get; set; }
-		public string? ImgUrl { get; set; }
+        public string? Species { get; set; }
+        public string? Description { get; set; }
+        public string? ImgUrl { get; set; }
+        public AnimalHandler Handler { get; set; }
         private static int nextId = 1;
         public int Id { get; }
 
@@ -18,12 +19,13 @@ namespace AnimalRoster6.Models
             nextId++;
         }
 
-        public Animal(string name, string species, string description, string imgUrl)
+        public Animal(string name, string species, string description, string imgUrl, AnimalHandler handler)
         {
             Name = name;
             Species = species;
             Description = description;
             ImgUrl = imgUrl;
+            Handler = handler;
         }
 
         public override bool Equals(object? obj)

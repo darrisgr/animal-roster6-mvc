@@ -23,6 +23,11 @@
     </div>
 
     <div asp-controller="Animals" asp-action="Add" class="form-group">
+        <label asp-for="Handler">Handler</label>
+        <select asp-for="Handler" asp-items="Model.AnimalHandlers"></select>
+    </div>
+
+    <div asp-controller="Animals" asp-action="Add" class="form-group">
         <label asp-for="ImgUrl">Image URL</label>
         <input asp-for="ImgUrl" type="text" class="form-control" />
         <span asp-validation-for="ImgUrl" class="text-danger"></span>
