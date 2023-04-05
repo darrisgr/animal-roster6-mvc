@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AnimalRoster6.Models;
 using AnimalRoster6.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using AnimalRoster6.Data;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,12 +13,18 @@ namespace AnimalRoster6.Controllers
 {
     public class AnimalsController : Controller
     {
+        private AnimalDbContext context;
+        public AnimalsController(AnimalDbContext dbContext)
+        {
+            context = dbContext;
+        }
+
 
         [HttpGet]
         // GET: /<controller>/
         public IActionResult Index()
         {
-            List<Animal> animals = new List<Animal>(AnimalData.GetAll());
+            List<Animal> animals = context.Animals.ToList();
             return View(animals);
         }
 
@@ -45,7 +52,8 @@ namespace AnimalRoster6.Controllers
                     ImgUrl = addAnimalViewModel.ImgUrl
                 };
 
-                AnimalData.Add(newAnimal);
+                context.Animals.Add(newAnimal);
+                context.SaveChanges();
 
                 return Redirect("/Animals");
             }
