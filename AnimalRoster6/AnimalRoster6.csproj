@@ -10,11 +10,13 @@
     <None Remove="Views\Animals\" />
     <None Remove="Data\" />
     <None Remove="ViewModels\" />
+    <None Remove="Views\Caretakers\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Animals\" />
     <Folder Include="Data\" />
     <Folder Include="ViewModels\" />
+    <Folder Include="Views\Caretakers\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.2" />

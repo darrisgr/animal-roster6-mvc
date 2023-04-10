@@ -1,0 +1,15 @@
+﻿@model List<AnimalRoster6.Models.Caretaker>
+
+<h1>All Caretakers</h1>
+
+<table>
+    <tr>
+        <th>Caretaker Name</th>
+    </tr>
+    @foreach (Caretaker caretaker in Model)
+    {
+        <tr>
+            <td>@caretaker.Name</td>
+        </tr>
+    }
+</table>
