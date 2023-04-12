@@ -51,6 +51,27 @@ namespace AnimalRoster6.Controllers
 
             return View(addCaretakerViewModel);
         }
+
+        public IActionResult Remove()
+        {
+            ViewBag.caretakers = context.Caretakers.ToList();
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Remove(int[] caretakerIds)
+        {
+            foreach (int caretakerId in caretakerIds)
+            {
+                AnimalCaretaker? theCaretaker = context.Caretakers.Find(caretakerId);
+                context.Caretakers.Remove(theCaretaker);
+            }
+
+            context.SaveChanges();
+
+            return Redirect("/Caretakers");
+        }
     }
 }
 

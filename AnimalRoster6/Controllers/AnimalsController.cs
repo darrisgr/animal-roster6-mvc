@@ -7,6 +7,7 @@ using AnimalRoster6.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using AnimalRoster6.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -63,6 +64,27 @@ namespace AnimalRoster6.Controllers
 
             return View(addAnimalViewModel);
 
+        }
+
+        public IActionResult Remove()
+        {
+            ViewBag.animals = context.Animals.ToList();
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Remove(int[] animalIds)
+        {
+            foreach (int animalId in animalIds)
+            {
+                Animal? theAnimal= context.Animals.Find(animalId);
+                context.Animals.Remove(theAnimal);
+            }
+
+            context.SaveChanges();
+
+            return Redirect("/Animals");
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using AnimalRoster6.Models;
+﻿using AnimalRoster6.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace AnimalRoster6.Data

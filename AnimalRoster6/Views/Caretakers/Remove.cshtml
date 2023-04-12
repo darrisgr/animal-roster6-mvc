@@ -1,0 +1,15 @@
+﻿<h1>Fire a Caretaker</h1>
+
+<form method="post">
+    @foreach (var c in ViewBag.caretakers)
+    {
+                <div class="form-group">
+                    <label>
+                        <span>@c.Name</span>
+                        <input type="checkbox" name="caretakerIds" value="@c.Id" />
+                    </label>
+                </div>
+    }
+
+    <input type="submit" value="Fire Selected Caretaker(s)" class="btn btn-danger" />
+</form>

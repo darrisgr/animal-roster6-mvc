@@ -1,0 +1,15 @@
+﻿<h1>Excommunicate an Animal</h1>
+
+<form method="post">
+    @foreach (var a in ViewBag.animals)
+    {
+                <div class="form-group">
+                    <label>
+                        <span>@a.Name</span>
+                        <input type="checkbox" name="animalIds" value="@a.Id" />
+                    </label>
+                </div>
+    }
+
+    <input type="submit" value="Excommunicate Selected Animal(s)" class="btn btn-danger" />
+</form>
