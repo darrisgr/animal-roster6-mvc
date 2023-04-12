@@ -5,31 +5,31 @@
 
 <form method="post">
     <div asp-controller="Animals" asp-action="Add" class="form-group">
-        <label asp-for="Name">Name</label>
+        <label asp-for="Name"><strong>Name</strong></label>
         <input asp-for="Name" type="text" class="form-control" />
         <span asp-validation-for="Name" class="text-danger"></span>
     </div>
 
     <div asp-controller="Animals" asp-action="Add" class="form-group">
-        <label asp-for="Species">Species</label>
+        <label asp-for="Species"><strong>Species</strong></label>
         <input asp-for="Species" type="text" class="form-control" />
         <span asp-validation-for="Species" class="text-danger"></span>
     </div>
 
     <div asp-controller="Animals" asp-action="Add" class="form-group">
-        <label asp-for="Description">Description</label>
+        <label asp-for="Description"><strong>Description</strong></label>
         <input asp-for="Description" type="text" class="form-control" />
         <span asp-validation-for="Description" class="text-danger"></span>
     </div>
 
     <div asp-controller="Animals" asp-action="Add" class="form-group">
-        <label asp-for="CaretakerId">Caretaker</label>
+        <label asp-for="CaretakerId"><strong>Caretaker</strong></label><br />
         <select asp-for="CaretakerId" asp-items="Model.Caretakers"></select>
         <span asp-validation-for="CaretakerId" class="text-danger"></span>
     </div>
 
     <div asp-controller="Animals" asp-action="Add" class="form-group">
-        <label asp-for="ImgUrl">Image URL</label>
+        <label asp-for="ImgUrl"><strong>Image URL</strong></label>
         <input asp-for="ImgUrl" type="text" class="form-control" />
         <span asp-validation-for="ImgUrl" class="text-danger"></span>
     </div>

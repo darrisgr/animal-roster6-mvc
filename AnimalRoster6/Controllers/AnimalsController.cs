@@ -86,6 +86,16 @@ namespace AnimalRoster6.Controllers
 
             return Redirect("/Animals");
         }
+
+        public IActionResult Detail(int id)
+        {
+            Animal theAnimal = context.Animals
+               .Include(a => a.Caretaker)
+               .Single(a => a.Id == id);
+
+            AnimalDetailViewModel viewModel = new AnimalDetailViewModel(theAnimal);
+            return View(viewModel);
+        }
     }
 }
 
