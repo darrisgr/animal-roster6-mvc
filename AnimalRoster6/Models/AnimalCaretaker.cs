@@ -1,16 +1,18 @@
 ﻿using System;
 namespace AnimalRoster6.Models
 {
-	public class Caretaker
-	{
+	public class AnimalCaretaker
+    {
 		public int Id { get; set; }
 		public string? Name { get; set; }
 
-		public Caretaker()
+		public List<Animal> Animals { get; set; }
+
+		public AnimalCaretaker()
 		{
 		}
 
-		public Caretaker(string name)
+		public AnimalCaretaker(string name)
 		{
 			Name = name;
 		}

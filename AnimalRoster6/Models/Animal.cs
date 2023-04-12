@@ -9,7 +9,8 @@ namespace AnimalRoster6.Models
         public string? Description { get; set; }
         public string? ImgUrl { get; set; }
 
-        public AnimalHandler Handler { get; set; }
+        public int CaretakerId { get; set; }
+        public AnimalCaretaker Caretaker  { get; set; }
 
         public int Id { get; set; }
 

@@ -21,7 +21,7 @@ namespace AnimalRoster6.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            List<Caretaker> caretakers = context.Caretakers.ToList();
+            List<AnimalCaretaker> caretakers = context.Caretakers.ToList();
             return View(caretakers);
         }
 
@@ -38,7 +38,7 @@ namespace AnimalRoster6.Controllers
         {
             if (ModelState.IsValid)
             {
-                Caretaker newCaretaker = new Caretaker
+                AnimalCaretaker newCaretaker = new AnimalCaretaker
                 {
                     Name = addCaretakerViewModel.Name
                 };

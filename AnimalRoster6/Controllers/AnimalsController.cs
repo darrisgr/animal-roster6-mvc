@@ -6,6 +6,7 @@ using AnimalRoster6.Models;
 using AnimalRoster6.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using AnimalRoster6.Data;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -24,7 +25,7 @@ namespace AnimalRoster6.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            List<Animal> animals = context.Animals.ToList();
+            List<Animal> animals = context.Animals.Include(a => a.Caretaker).ToList();
             return View(animals);
         }
 
@@ -32,7 +33,8 @@ namespace AnimalRoster6.Controllers
         [Route("Animals/Add")]
         public IActionResult Add()
         {
-            AddAnimalViewModel addAnimalViewModel = new AddAnimalViewModel();
+            List<AnimalCaretaker> caretakers = context.Caretakers.ToList();
+            AddAnimalViewModel addAnimalViewModel = new AddAnimalViewModel(caretakers);
             return View(addAnimalViewModel);
         }
 
@@ -43,13 +45,14 @@ namespace AnimalRoster6.Controllers
         {
             if (ModelState.IsValid)
             {
+                AnimalCaretaker theCaretaker = context.Caretakers.Find(addAnimalViewModel.CaretakerId);
                 Animal newAnimal = new Animal
                 {
                     Name = addAnimalViewModel.Name,
                     Species = addAnimalViewModel.Species,
                     Description = addAnimalViewModel.Description,
-                    Handler = addAnimalViewModel.Handler,
-                    ImgUrl = addAnimalViewModel.ImgUrl
+                    ImgUrl = addAnimalViewModel.ImgUrl,
+                    Caretaker = theCaretaker
                 };
 
                 context.Animals.Add(newAnimal);

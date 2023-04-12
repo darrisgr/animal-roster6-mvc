@@ -23,24 +23,26 @@ namespace AnimalRoster6.ViewModels
         [Url(ErrorMessage = "Invalid URL format.")]
         public string? ImgUrl { get; set; }
 
-        public AnimalHandler Handler { get; set; }
+        [Required(ErrorMessage = "Hey don't forget that you need a Caretaker :)")]
+        public int CaretakerId { get; set; }
 
-        public List<SelectListItem> AnimalHandlers { get; set; } = new List<SelectListItem>
+        public List<SelectListItem>? Caretakers { get; set; }
+
+        public AddAnimalViewModel(List<AnimalCaretaker> caretakers)
         {
-            new SelectListItem(AnimalHandler.Gerard.ToString(), ((int)AnimalHandler.Gerard).ToString()), // ("Gerard", "0")
-            new SelectListItem(AnimalHandler.Patrick.ToString(), ((int)AnimalHandler.Patrick).ToString()), // ("Patrick", "1")
-            new SelectListItem(AnimalHandler.Nasya.ToString(), ((int)AnimalHandler.Nasya).ToString()), // ("Gerard", "1")
-            new SelectListItem(AnimalHandler.Cory.ToString(), ((int)AnimalHandler.Cory).ToString()), // ("Gerard", "1")
-            new SelectListItem(AnimalHandler.Maggie.ToString(), ((int)AnimalHandler.Maggie).ToString()), // ("Gerard", "1")
-            new SelectListItem(AnimalHandler.Justus.ToString(), ((int)AnimalHandler.Justus).ToString()), // ("Gerard", "1")
-            new SelectListItem(AnimalHandler.Rick.ToString(), ((int)AnimalHandler.Rick).ToString()), // ("Gerard", "1")
-            new SelectListItem(AnimalHandler.Ashley.ToString(), ((int)AnimalHandler.Ashley).ToString()), // ("Gerard", "1")
-            new SelectListItem(AnimalHandler.Mario.ToString(), ((int)AnimalHandler.Mario).ToString()), // ("Gerard", "1")
-            new SelectListItem(AnimalHandler.Sarah.ToString(), ((int)AnimalHandler.Sarah).ToString()), // ("Gerard", "1")
-            new SelectListItem(AnimalHandler.Jose.ToString(), ((int)AnimalHandler.Jose).ToString()), // ("Gerard", "1")
+            Caretakers = new List<SelectListItem>();
 
+            foreach (var caretaker in caretakers)
+            {
+                Caretakers.Add(new SelectListItem
+                {
+                    Value = caretaker.Id.ToString(),
+                    Text = caretaker.Name
+                });
+            }
+        }
 
-        };
+        public AddAnimalViewModel() { }
     }
 }
 

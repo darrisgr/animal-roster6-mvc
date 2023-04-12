@@ -23,8 +23,9 @@
     </div>
 
     <div asp-controller="Animals" asp-action="Add" class="form-group">
-        <label asp-for="Handler">Handler</label>
-        <select asp-for="Handler" asp-items="Model.AnimalHandlers"></select>
+        <label asp-for="CaretakerId">Handler</label>
+        <select asp-for="CaretakerId" asp-items="Model.Caretakers"></select>
+        <span asp-validation-for="CaretakerId" class="text-danger"></span>
     </div>
 
     <div asp-controller="Animals" asp-action="Add" class="form-group">

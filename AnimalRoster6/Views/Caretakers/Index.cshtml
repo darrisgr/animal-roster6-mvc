@@ -1,4 +1,4 @@
-﻿@model List<AnimalRoster6.Models.Caretaker>
+﻿@model List<AnimalRoster6.Models.AnimalCaretaker>
 
 <h1>All Caretakers</h1>
 
@@ -6,7 +6,7 @@
     <tr>
         <th>Caretaker Name</th>
     </tr>
-    @foreach (Caretaker caretaker in Model)
+    @foreach (AnimalCaretaker caretaker in Model)
     {
         <tr>
             <td>@caretaker.Name</td>
