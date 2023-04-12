@@ -23,4 +23,9 @@
         <th>Image</th>
         <td><img src=@Model.ImgUrl width="30%"/></td>
     </tr>
+    <tr>
+        <th>Tags</th>
+        <td>@Model.TagText</td>
+    </tr>
 </table>
+<a asp-controller="Tag" asp-action="AddAnimal" asp-route-id="@Model.Id">Add Tag</a>

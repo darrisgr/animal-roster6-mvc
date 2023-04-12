@@ -1,0 +1,13 @@
+﻿@model AnimalRoster6.ViewModels.AddAnimalTagViewModel
+
+<h1>Add Tag to @Model.Animal.Name! 🙂</h1>
+
+<form asp-controller="Tag" asp-action="AddAnimal" method="post">
+   <input type="hidden" value="@Model.Animal.Id" name="AnimalId" />
+   <div class="form-group">
+      <label asp-for="TagId">Tag</label>
+      <select asp-for="TagId" asp-items="Model.Tags"></select>
+      <span asp-validation-for="TagId" class="text-danger"></span>
+   </div>
+   <input type="submit" value="Add Tag(s)" class="btn btn-success" />
+</form>

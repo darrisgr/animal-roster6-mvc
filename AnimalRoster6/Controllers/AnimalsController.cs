@@ -91,6 +91,7 @@ namespace AnimalRoster6.Controllers
         {
             Animal theAnimal = context.Animals
                .Include(a => a.Caretaker)
+               .Include(a => a.Tags)
                .Single(a => a.Id == id);
 
             AnimalDetailViewModel viewModel = new AnimalDetailViewModel(theAnimal);

@@ -12,6 +12,8 @@ namespace AnimalRoster6.Models
         public int CaretakerId { get; set; }
         public AnimalCaretaker Caretaker  { get; set; }
 
+        public ICollection<Tag>? Tags { get; set; }
+
         public int Id { get; set; }
 
 
@@ -25,6 +27,7 @@ namespace AnimalRoster6.Models
             Species = species;
             Description = description;
             ImgUrl = imgUrl;
+            Tags = new List<Tag>();
         }
 
         public override bool Equals(object? obj)

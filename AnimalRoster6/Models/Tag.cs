@@ -10,9 +10,12 @@ namespace AnimalRoster6.Models
         [StringLength(50, MinimumLength = 3, ErrorMessage = "Name must be between 3 and 50 characters.")]
         public string Name { get; set; }
 
+        public ICollection<Animal>? Animals { get; set; }
+
         public Tag(string name)
         {
             Name = name;
+            Animals = new List<Animal>();
         }
 
         public Tag()

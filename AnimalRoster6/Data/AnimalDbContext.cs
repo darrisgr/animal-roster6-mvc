@@ -12,6 +12,15 @@ namespace AnimalRoster6.Data
 		public AnimalDbContext(DbContextOptions<AnimalDbContext> options) : base(options)
 		{
 		}
-	}
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+			modelBuilder.Entity<Animal>()
+				.HasMany(a => a.Tags)
+				.WithMany(a => a.Animals)
+				.UsingEntity(o =>
+				o.ToTable("EventTags"));
+        }
+    }
 }
 

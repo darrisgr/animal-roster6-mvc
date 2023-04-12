@@ -42,5 +42,51 @@ namespace AnimalRoster6.Controllers
 
             return View("Add", tag);
         }
+
+        // localhost:[port]/Tag/AddAnimal/{AnimalId?}
+        public IActionResult AddAnimal(int id)
+        {
+            Animal theAnimal = context.Animals.Find(id);
+            List<Tag> possibleTags = context.Tags.ToList();
+
+            AddAnimalTagViewModel viewModel = new AddAnimalTagViewModel(theAnimal, possibleTags);
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult AddAnimal(AddAnimalTagViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                int animalId = viewModel.AnimalId;
+                int tagId = viewModel.TagId;
+
+                Animal theAnimal = context.Animals
+                    .Include(a => a.Tags)
+                    .Where(a => a.Id == animalId)
+                    .First();
+
+                Tag theTag = context.Tags
+                    .Where(t => t.Id == tagId)
+                    .First();
+
+                theAnimal.Tags.Add(theTag);
+                context.SaveChanges();
+                return Redirect("/Animals/Detail/" + animalId);
+            }
+
+            return View(viewModel);
+        }
+
+        public IActionResult Detail(int id)
+        {
+            Tag theTag = context.Tags
+                .Include(a => a.Animals)
+                .Where(t => t.Id == id)
+                .First();
+
+            return View(theTag);
+        }
     }
 }

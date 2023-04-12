@@ -1,0 +1,16 @@
+﻿@model AnimalRoster6.Models.Tag
+
+@if (Model.Animals.ToList().Count == 0) 
+{
+    <h1>Oops! No animals have been associated with that tag.</h1>
+}
+else 
+{
+    <h1>Animals Tagged As: @Model.Name</h1>
+    <ul>
+        @foreach (var animalTag in Model.Animals)
+        {
+            <li>@animalTag.Name</li>
+        }
+    </ul>
+}
